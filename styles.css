@@ -2,13 +2,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #2e3440;
+    color: #d8dee9;
 }
 
 header {
-    background-color: #4c566a;
-    color: #fff;
+    background-color: #3b4252;
+    color: #eceff4;
     padding: 20px;
     text-align: center;
     position: relative;
@@ -26,7 +26,8 @@ header img.profile-img {
 section {
     padding: 20px;
     margin: 20px;
-    background-color: #fff;
+    background-color: #434c5e;
+    color: #eceff4;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -46,7 +47,7 @@ img.badge-img {
 }
 
 a {
-    color: #5e81ac;
+    color: #88c0d0;
     text-decoration: none;
 }
 
@@ -62,7 +63,7 @@ a:hover {
 
 .social-links a {
     background-color: #5e81ac;
-    color: #fff;
+    color: #eceff4;
     padding: 10px 20px;
     border-radius: 5px;
     transition: background-color 0.3s;
