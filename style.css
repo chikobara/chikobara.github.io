@@ -259,12 +259,6 @@ footer a {
 
 .skill-item i {
     font-size: 3rem;
-    margin-bottom: 0.5rem;
-}
-
-.skill-item span {
-    font-size: 0.9rem;
-    font-weight: 500;
 }
 
 @media (max-width: 768px) {
