@@ -37,14 +37,33 @@ document.addEventListener('DOMContentLoaded', function() {
     const githubUsername = 'Chikobara';
     const githubProjectsContainer = document.getElementById('github-projects');
 
-    fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&direction=desc`)
+    fetch(`https://api.github.com/users/${githubUsername}/repos?per_page=100`)
         .then(response => response.json())
         .then(repos => {
-            let projectsHTML = '<h3>My GitHub Projects</h3><div class="projects-grid">';
-            // Filter out forked repos and get top 6
-            const nonForkedRepos = repos.filter(repo => !repo.fork).slice(0, 6);
+            // Pin specific repos
+            const pinnedRepoNames = ["Lumos", "Memoir"];
+            let pinnedRepos = [];
+            let otherRepos = [];
 
-            nonForkedRepos.forEach(repo => {
+            repos.forEach(repo => {
+                if (pinnedRepoNames.includes(repo.name)) {
+                    pinnedRepos.push(repo);
+                } else if (!repo.fork) {
+                    otherRepos.push(repo);
+                }
+            });
+
+            // Sort pinned repos by the order in pinnedRepoNames
+            pinnedRepos.sort((a, b) => pinnedRepoNames.indexOf(a.name) - pinnedRepoNames.indexOf(b.name));
+
+            // Sort other repos by stars
+            otherRepos.sort((a, b) => b.stargazers_count - a.stargazers_count);
+
+            const sortedRepos = [...pinnedRepos, ...otherRepos];
+
+            let projectsHTML = '<h3>My GitHub Projects</h3><div class="projects-grid">';
+
+            sortedRepos.slice(0, 6).forEach(repo => {
                 projectsHTML += `
                     <div class="project-card-dynamic">
                         <h4><a href="${repo.html_url}" target="_blank">${repo.name}</a></h4>
@@ -57,8 +76,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
             });
+
             projectsHTML += '</div>';
-            if(nonForkedRepos.length > 0) {
+            if(sortedRepos.length > 0) {
                  githubProjectsContainer.innerHTML = projectsHTML;
             } else {
                  githubProjectsContainer.innerHTML = '<h3>My GitHub Projects</h3><p>Could not fetch projects from GitHub.</p>';
