@@ -33,73 +33,80 @@ document.addEventListener('DOMContentLoaded', function() {
         smartBackspace: true,
     });
 
-    // Statically defined GitHub repositories
+    // Fetch GitHub repositories
+    const githubUsername = 'Chikobara';
     const githubProjectsContainer = document.getElementById('github-projects');
-    const repos = [
-        {
-            name: "Lumos",
-            html_url: "https://github.com/Chikobara/Lumos",
-            description: "AI-Driven Exoplnate Classification",
-            language: "N/A",
-            stargazers_count: 0,
-            forks_count: 0
-        },
-        {
-            name: "Memoir",
-            html_url: "https://github.com/Chikobara/Memoir",
-            description: "No description available.",
-            language: "TypeScript",
-            stargazers_count: 1,
-            forks_count: 0
-        },
-        {
-            name: "dotfiles",
-            html_url: "https://github.com/Chikobara/dotfiles",
-            description: "[] Arch Hyprland ricing dotfiles",
-            language: "Typst",
-            stargazers_count: 169,
-            forks_count: 3
-        },
-        {
-            name: "GPU-Switcher-Supergfxctl",
-            html_url: "https://github.com/Chikobara/GPU-Switcher-Supergfxctl",
-            description: "Gnome extension for Asus laptops using supergfxctl",
-            language: "JavaScript",
-            stargazers_count: 23,
-            forks_count: 3
-        },
-        {
-            name: "guide-QEMU-KVM-GPU-Passthrough-Arch",
-            html_url: "https://github.com/Chikobara/guide-QEMU-KVM-GPU-Passthrough-Arch",
-            description: "QEMU/KVM install guide with GPU-Passthrough for Arch Linux",
-            language: "N/A",
-            stargazers_count: 4,
-            forks_count: 1
-        },
-        {
-            name: "gnome-dotfiles",
-            html_url: "https://github.com/Chikobara/gnome-dotfiles",
-            description: "gnome dotfiles",
-            language: "JavaScript",
-            stargazers_count: 2,
-            forks_count: 0
-        }
-    ];
 
-    let projectsHTML = '<h3>My GitHub Projects</h3><div class="projects-grid">';
-    repos.forEach(repo => {
-        projectsHTML += `
-            <div class="project-card-dynamic">
-                <h4><a href="${repo.html_url}" target="_blank">${repo.name}</a></h4>
-                <p>${repo.description || 'No description available.'}</p>
-                <div class="project-stats">
-                    <span><i class="fas fa-code"></i> ${repo.language || 'N/A'}</span>
-                    <span><i class="fas fa-star"></i> ${repo.stargazers_count}</span>
-                    <span><i class="fas fa-code-branch"></i> ${repo.forks_count}</span>
-                </div>
-            </div>
-        `;
-    });
-    projectsHTML += '</div>';
-    githubProjectsContainer.innerHTML = projectsHTML;
+    fetch(`https://api.github.com/users/${githubUsername}/repos?per_page=100`)
+        .then(response => response.json())
+        .then(repos => {
+            const repoPromises = repos.map(repo => {
+                return fetch(repo.languages_url)
+                    .then(response => response.json())
+                    .then(languages => {
+                        repo.languages = Object.keys(languages);
+                        return repo;
+                    });
+            });
+            return Promise.all(repoPromises);
+        })
+        .then(reposWithLanguages => {
+            // Pin specific repos
+            const pinnedRepoNames = ["Lumos", "Memoir"];
+            let pinnedRepos = [];
+            let otherRepos = [];
+
+            reposWithLanguages.forEach(repo => {
+                if (repo.name === "Memoir") {
+                    repo.description = "Developed an open-source, real-time cross-platform note-taking app using Next.js, ElectronJS, React, and TypeScript.";
+                }
+
+                if (pinnedRepoNames.includes(repo.name)) {
+                    pinnedRepos.push(repo);
+                } else if (!repo.fork) {
+                    otherRepos.push(repo);
+                }
+            });
+
+            // Sort pinned repos by the order in pinnedRepoNames
+            pinnedRepos.sort((a, b) => pinnedRepoNames.indexOf(a.name) - pinnedRepoNames.indexOf(b.name));
+
+            // Sort other repos by stars
+            otherRepos.sort((a, b) => b.stargazers_count - a.stargazers_count);
+
+            const sortedRepos = [...pinnedRepos, ...otherRepos];
+
+            let projectsHTML = '<h3>My GitHub Projects</h3><div class="projects-grid">';
+
+            sortedRepos.slice(0, 6).forEach(repo => {
+                const languagesHTML = repo.languages.length > 0
+                    ? repo.languages.map(lang => `<span class="language-tag">${lang}</span>`).join('')
+                    : '<span class="language-tag">N/A</span>';
+
+                projectsHTML += `
+                    <div class="project-card-dynamic">
+                        <h4><a href="${repo.html_url}" target="_blank">${repo.name}</a></h4>
+                        <p>${repo.description || 'No description available.'}</p>
+                        <div class="project-stats">
+                            <div class="languages">${languagesHTML}</div>
+                            <div class="repo-stats">
+                                <span><i class="fas fa-star"></i> ${repo.stargazers_count}</span>
+                                <span><i class="fas fa-code-branch"></i> ${repo.forks_count}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            projectsHTML += '</div>';
+            if(sortedRepos.length > 0) {
+                 githubProjectsContainer.innerHTML = projectsHTML;
+            } else {
+                 githubProjectsContainer.innerHTML = '<h3>My GitHub Projects</h3><p>Could not fetch projects from GitHub.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching GitHub repos:', error);
+            githubProjectsContainer.innerHTML = '<h3>My GitHub Projects</h3><p>Could not fetch projects from GitHub.</p>';
+        });
 });
