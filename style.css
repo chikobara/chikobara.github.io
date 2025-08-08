@@ -227,13 +227,33 @@ footer a {
 
 .project-stats {
     display: flex;
-    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
     font-size: 0.9rem;
     color: #aaa;
+    margin-top: 1.5rem;
 }
 
-.project-stats span i {
-    margin-right: 0.5rem;
+.languages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.language-tag {
+    background-color: #333;
+    color: var(--primary-color);
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+.repo-stats span {
+    margin-left: 1rem;
+}
+
+.repo-stats span i {
+    margin-right: 0.3rem;
     color: var(--primary-color);
 }
 
