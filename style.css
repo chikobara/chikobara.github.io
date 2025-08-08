@@ -195,6 +195,78 @@ footer a {
     text-decoration: none;
 }
 
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card-dynamic {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card-dynamic:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-card-dynamic h4 a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.project-card-dynamic p {
+    font-size: 0.9rem;
+    margin: 1rem 0;
+}
+
+.project-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.project-stats span i {
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+}
+
+.skill-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+
+.skill-item {
+    background: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+    color: var(--primary-color);
+}
+
+.skill-item i {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.skill-item span {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
 @media (max-width: 768px) {
     h1 {
         font-size: 2.5rem;
