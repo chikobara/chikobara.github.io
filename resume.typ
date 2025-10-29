@@ -86,9 +86,6 @@ Highly motivated Artificial Intelligence Engineer (Graduation: Sept 2025) with a
 
 == Professional Development & Extracurricular
 
-#generic-one-by-two(left: "test", right: "test")
-
-
 #project(
   name: "Python For Everybody Specialization - Coursera",
   dates: "Jul 2021",
