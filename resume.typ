@@ -62,7 +62,7 @@ Highly motivated Artificial Intelligence Engineer (Graduation: Sept 2025) with a
 == Projects
 #project(
   name: "AI-Driven Exoplanet Biosignature Classification (Lumos Project)",
-  role: "AI Developer & Researcher (Graduation Project)",
+  role: "AI Developer & Researcher",
   dates: dates-helper(start-date: "Oct 2024", end-date: "Sep 2025"),
   url: "chikobara.github.io/Lumos",
 )
@@ -73,7 +73,7 @@ Highly motivated Artificial Intelligence Engineer (Graduation: Sept 2025) with a
 #project(
   name: "Memoir (open-memoir.vercel.app), ",
   // Role is optional
-  role: "Full-Stack/AI DEV, Semester Project",
+  role: "Memoir, a Full-Stack/AI DEV",
   // Dates is optional
   dates: dates-helper(start-date: "Jul 2024", end-date: "Sep 2024"),
   // URL is also optional
