@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Typed.js configuration
     new Typed('.typewriter', {
-        strings: ['AI Engineer.', 'Full-Stack Developer.', 'Open-Source Contributor.', 'Linux Enthusiast.'],
+        strings: ['an AI Engineer.', 'a Full-Stack Developer.', 'an Open-Source Contributor.', 'a Linux Enthusiast.'],
         typeSpeed: 50,
         backSpeed: 25,
         loop: true,
