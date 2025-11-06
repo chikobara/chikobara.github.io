@@ -61,7 +61,7 @@ Highly motivated Artificial Intelligence Engineer (Graduation: Sept 2025) with a
 
 == Projects
 #project(
-  name: "AI-Driven Exoplanet Biosignature Classification (Lumos Project)",
+  name: "Lumos Project, An AI-Driven Exoplanet Biosignature Classification.",
   role: "AI Developer & Researcher",
   dates: dates-helper(start-date: "Oct 2024", end-date: "Sep 2025"),
   url: "chikobara.github.io/Lumos",
