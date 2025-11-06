@@ -2,7 +2,7 @@
 
 // Put your personal information here, replacing mine
 #let name = "Albaraa I. Alsmail"
-#let location = "Damascus, SY"
+#let location = "Deir Ezzor, SY"
 #let email = "albaraa.as.2002@gmail.com"
 #let github = "github.com/Chikobara"
 #let githubio = "chikobara.github.io"
