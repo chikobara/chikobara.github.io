@@ -61,14 +61,17 @@ Highly motivated Artificial Intelligence Engineer (Graduation: Sept 2025) with a
 
 == Projects
 #project(
-  name: "Lumos Project, An AI-Driven Exoplanet Biosignature Classification.",
-  role: "AI Developer & Researcher",
+  name: "Lumos Project is An AI-Driven Exoplanet Biosignature Classification.",
+  role: "LUMOS, AI Developer & Researcher",
   dates: dates-helper(start-date: "Oct 2024", end-date: "Sep 2025"),
   url: "chikobara.github.io/Lumos",
 )
 - Developed a full-stack AI pipeline to classify exoplanet biosignatures from low-SNR synthetic spectra.
 - External Validation: Successfully exhibited the project at Tech Expoland 2025, validating its technical quality and practical application.
-- Media Recognition: Project results and methodology were published in a detailed article by the Syrian Arab News Agency (SANA). Link to the article: https://sana.sy/locals/2316044/
+- Media Recognition - Project results and methodology were published in a detailed article by the Syrian Arab News Agency (SANA). Link to the article: https://sana.sy/locals/2316044/
+- Won the best project award in the *FMEE* (Faculty of Mechanical and Electrical Engineering) Exhibition 8th Edition 2025 in Damascus that was held on November 12th, 2025. 
+- *Certification of Appreciation* - Awarded by Syrian Research and Publication Society in the FMEE Exhibition 2025.
+- *Certification of Appreciation* - In application of the outstanding participation and efforts in the 2025 Exhibition of FMEE, Awarded by *Prof. Mohallab Aldawood* Dean of Faculty of the Mechanical and Electrical Engineering.
 
 #project(
   name: "Memoir (open-memoir.vercel.app), ",
