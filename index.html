@@ -4,118 +4,158 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Albaraa I. Alsmail - AI Engineer</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="particles-js"></div>
+    <!-- 3D Background Container -->
+    <canvas id="bg-canvas"></canvas>
 
-    <header>
+    <div class="overlay"></div>
+
+    <header class="glass-nav">
         <nav>
             <div class="logo">AIA</div>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-item">About</a></li>
+                <li><a href="#projects" class="nav-item">Projects</a></li>
+                <li><a href="#skills" class="nav-item">Skills</a></li>
+                <li><a href="#education" class="nav-item">Education</a></li>
+                <li><a href="#contact" class="nav-item">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="about">
-            <div class="about-content">
-                <h1>Albaraa I. Alsmail</h1>
-                <p>I'm <span class="typewriter"></span></p>
-                <div class="social-links">
-                    <a href="https://github.com/Chikobara" target="_blank">GitHub</a>
-                    <a href="https://github.com/chikobara/chikobara.github.io/blob/main/resume.pdf" target="_blank">PDF Resume</a>
-                    <a href="https://linkedin.com/in/albaraa-alsmail" target="_blank">LinkedIn</a>
-                    
+        <section id="about" class="hero-section hidden">
+            <div class="glass-card hero-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                <div class="hero-content">
+                    <h1>Albaraa I. Alsmail</h1>
+                    <div class="typewriter-container">
+                        <span id="typed-text"></span>
+                    </div>
+                    <p class="hero-subtitle">Merging Intelligence with Innovation</p>
+                    <div class="social-links">
+                        <a href="https://github.com/Chikobara" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
+                        <a href="https://github.com/chikobara/chikobara.github.io/blob/main/resume.pdf" target="_blank" class="social-btn"><i class="fas fa-file-pdf"></i></a>
+                        <a href="https://linkedin.com/in/albaraa-alsmail" target="_blank" class="social-btn"><i class="fab fa-linkedin"></i></a>
+                        <a href="mailto:albaraa.as.2002@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="project-card">
-                <h3>Lumos (AI-Driven Exoplanet Biosignature Classification)</h3>
-                <p><strong>Role:</strong> AI Developer & Researcher</p>
-                <p>A full-stack AI pipeline to classify exoplanet biosignatures from low-SNR synthetic spectra, with Educational Game</p>
-                <a href="https://chikobara.github.io/Lumos/" target="_blank" class="project-link">View Project</a>
-            </div>
-            <div class="project-card">
-                <h3>Memoir</h3>
-                <p><strong>Role:</strong> Full-Stack/AI DEV</p>
-                <p>An open-source, real-time cross-platform note-taking app.</p>
-                <a href="http://open-memoir.vercel.app" target="_blank" class="project-link">View Project</a>
-            </div>
-            <div id="github-projects">
-                <!-- GitHub projects will be dynamically inserted here -->
+        <section id="projects" class="hidden">
+            <h2 class="section-title">Featured Projects</h2>
+            <div id="projects-grid" class="projects-grid">
+                <!-- Dynamic GitHub projects will be injected here -->
             </div>
         </section>
 
-        <section id="skills">
-            <h2>Skills</h2>
-            <div class="skill-gallery">
-                <div class="skill-item"><i class="devicon-javascript-plain"></i></div>
-                <div class="skill-item"><i class="devicon-python-plain"></i></div>
-                <div class="skill-item"><i class="devicon-cplusplus-plain"></i></div>
-                <div class="skill-item"><i class="devicon-html5-plain"></i></div>
-                <div class="skill-item"><i class="devicon-css3-plain"></i></div>
-                <div class="skill-item"><i class="devicon-java-plain"></i></div>
-                <div class="skill-item"><i class="devicon-bash-plain"></i></div>
-                <div class="skill-item"><i class="devicon-r-plain"></i></div>
-                <div class="skill-item"><i class="devicon-flutter-plain"></i></div>
-                <div class="skill-item"><i class="devicon-dart-plain"></i></div>
-                <div class="skill-item"><i class="devicon-pandas-plain"></i></div>
-                <div class="skill-item"><i class="devicon-tensorflow-original"></i></div>
-                <div class="skill-item"><i class="devicon-git-plain"></i></div>
-                <div class="skill-item"><i class="devicon-linux-plain"></i></div>
-                <div class="skill-item"><i class="devicon-docker-plain"></i></div>
-                <div class="skill-item"><i class="devicon-googlecloud-plain"></i></div>
+        <section id="skills" class="hidden">
+            <h2 class="section-title">Technical Arsenal</h2>
+            <div class="glass-card skills-container">
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <div class="skill-icons">
+                        <i class="devicon-python-plain colored" title="Python"></i>
+                        <i class="devicon-javascript-plain colored" title="JavaScript"></i>
+                        <i class="devicon-cplusplus-plain colored" title="C++"></i>
+                        <i class="devicon-java-plain colored" title="Java"></i>
+                        <i class="devicon-dart-plain colored" title="Dart"></i>
+                        <i class="devicon-r-plain colored" title="R"></i>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>AI & Data</h3>
+                    <div class="skill-icons">
+                        <i class="devicon-tensorflow-original colored" title="TensorFlow"></i>
+                        <i class="devicon-pandas-plain colored" title="Pandas"></i>
+                        <i class="devicon-numpy-plain colored" title="NumPy"></i>
+                        <!-- Add more icons as valid classes exist -->
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Frontend & Tools</h3>
+                    <div class="skill-icons">
+                        <i class="devicon-html5-plain colored" title="HTML5"></i>
+                        <i class="devicon-css3-plain colored" title="CSS3"></i>
+                        <i class="devicon-flutter-plain colored" title="Flutter"></i>
+                        <i class="devicon-git-plain colored" title="Git"></i>
+                        <i class="devicon-docker-plain colored" title="Docker"></i>
+                        <i class="devicon-linux-plain colored" title="Linux"></i>
+                    </div>
+                </div>
             </div>
-            <h3>Other Skills</h3>
-            <ul>
-                <li>Developed a GNOME extension to enhance user experience and system customization.</li>
-                <li>Customized Hyprland and GNOME window managers, optimizing workflows and aesthetics.</li>
-                <li>Actively contribute to open-source projects on GitHub, engaging in commits, issues, pull requests, and discussions.</li>
-            </ul>
+            
+            <div class="glass-card other-skills">
+                <h3>System & OS</h3>
+                <ul>
+                    <li><i class="fas fa-terminal"></i> GNOME Extension Development</li>
+                    <li><i class="fas fa-desktop"></i> Hyprland & Linux Customization</li>
+                    <li><i class="fas fa-code-branch"></i> Open Source Contributions</li>
+                </ul>
+            </div>
         </section>
 
-        <section id="education">
-            <h2>Education</h2>
-            <div class="education-item">
-                <h3>Al-Sham Private University</h3>
-                <p>Bachelor's of ITE, Artificial Intelligence (Sep 2021 - 2025)</p>
-                <p>Cumulative GPA: 3.0/4.0</p>
+        <section id="education" class="hidden">
+            <h2 class="section-title">Education</h2>
+            <div class="glass-card education-card">
+                <div class="edu-header">
+                    <i class="fas fa-graduation-cap edu-icon"></i>
+                    <div>
+                        <h3>Al-Sham Private University</h3>
+                        <p class="edu-degree">Bachelor's of ITE, Artificial Intelligence</p>
+                    </div>
+                </div>
+                <div class="edu-details">
+                    <p class="edu-date">Sep 2021 - 2025</p>
+                    <p class="edu-gpa">GPA: 2.77/4.0</p>
+                </div>
             </div>
         </section>
 
-        <section id="extracurriculars">
-            <h2>Extracurricular Activities & Certifications</h2>
-            <ul>
-                <li>Python For Everybody - Coursera (Jul 2021)</li>
-                <li>Python Data Structures - Coursera (Oct 2021)</li>
-                <li>Using Python to Access Web Data - Coursera (Dec 2021)</li>
-                <li>What is Data Science? - Coursera (Sep 2023)</li>
-                <li>Machine Learning with Python (IBM AI Engineering Professional Certificate) (Jan 2025)</li>
-                <li>IBM AI Engineering Professional Certificate (Sep 2024 - Present)</li>
-            </ul>
+        <section id="extracurriculars" class="hidden">
+            <h2 class="section-title">Certifications</h2>
+            <div class="glass-card cert-card">
+                <ul class="cert-list">
+                    <li><span>IBM AI Engineering Professional Certificate</span> <span class="cert-date">2025</span></li>
+                    <li><span>Machine Learning with Python (IBM)</span> <span class="cert-date">Jan 2025</span></li>
+                    <li><span>What is Data Science? - Coursera</span> <span class="cert-date">Sep 2023</span></li>
+                    <li><span>Using Python to Access Web Data</span> <span class="cert-date">Dec 2021</span></li>
+                </ul>
+            </div>
         </section>
 
     </main>
 
-    <footer id="contact">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:albaraa.as.2002@gmail.com">albaraa.as.2002@gmail.com</a></p>
-        <p>Phone: +963 (988)-527682</p>
+    <footer id="contact" class="glass-footer hidden">
+        <h2>Get In Touch</h2>
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> <a href="mailto:albaraa.as.2002@gmail.com">albaraa.as.2002@gmail.com</a></p>
+            <p><i class="fas fa-phone"></i> +963 (988)-527682</p>
+        </div>
+        <p class="copyright">&copy; 2026 Albaraa I. Alsmail. Built with 🧠 & 💻</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <!-- Scripts -->
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Vanilla Tilt -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <!-- Typed.js -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <!-- Custom Script -->
     <script src="script.js"></script>
 </body>
 </html>
