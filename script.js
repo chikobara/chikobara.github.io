@@ -235,5 +235,52 @@ async function fetchGitHubData() {
     }
 }
 
+// Mobile Menu Toggle
+// Mobile Menu Toggle
+const burger = document.querySelector('.hamburger');
+const nav = document.querySelector('.nav-links');
+const navLinks = document.querySelectorAll('.nav-links li');
+const burgerIcon = burger ? burger.querySelector('i') : null;
+
+if (burger) {
+    burger.addEventListener('click', () => {
+        // Toggle Nav
+        nav.classList.toggle('nav-active');
+
+        // Animate Links
+        navLinks.forEach((link, index) => {
+            if (link.style.animation) {
+                link.style.animation = '';
+            } else {
+                link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+            }
+        });
+
+        // Icon Animation
+        if (burgerIcon) {
+            burgerIcon.classList.toggle('fa-bars');
+            burgerIcon.classList.toggle('fa-times');
+        }
+    });
+
+    // Close menu when link is clicked
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('nav-active');
+            
+            // Reset icon
+            if (burgerIcon) {
+                burgerIcon.classList.add('fa-bars');
+                burgerIcon.classList.remove('fa-times');
+            }
+
+            navLinks.forEach((link) => {
+                link.style.animation = '';
+            });
+        });
+    });
+}
+
+// Initialize Projects
 fetchGitHubData();
 

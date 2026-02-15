@@ -103,6 +103,7 @@ nav {
     font-size: 1.5rem;
     font-weight: 900;
     background: linear-gradient(to right, var(--accent-color), var(--secondary-accent));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 0 10px rgba(184, 134, 255, 0.5);
@@ -138,6 +139,10 @@ nav {
     width: 100%;
 }
 
+.hamburger {
+    display: none;
+}
+
 /* Main Container */
 main {
     max-width: 1200px;
@@ -155,6 +160,7 @@ section {
     margin-bottom: 2rem;
     text-align: center;
     background: linear-gradient(to right, #fff, #bfaec2);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 0 15px rgba(191, 174, 194, 0.3);
@@ -191,6 +197,7 @@ section {
     font-size: 3.5rem;
     margin-bottom: 1rem;
     background: linear-gradient(135deg, #ffffff 0%, #d8b4fe 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -424,25 +431,68 @@ section {
     color: #bfaec2;
 }
 
-/* Certifications */
-.cert-list {
+/* Certifications & Languages */
+.credentials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.cert-card h3, .lang-card h3 {
+    margin-bottom: 1.5rem;
+    color: var(--secondary-accent);
+    border-bottom: 1px solid rgba(184, 134, 255, 0.2);
+    padding-bottom: 0.5rem;
+}
+
+.cert-list, .lang-list {
     list-style: none;
 }
 
-.cert-list li {
+.cert-list li, .lang-list li {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 0.5rem;
     padding: 1rem 0;
     border-bottom: 1px solid rgba(184, 134, 255, 0.1);
 }
 
-.cert-list li:last-child {
+.cert-list li:last-child, .lang-list li:last-child {
     border-bottom: none;
 }
 
-.cert-date {
+.cert-info, .lang-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.cert-date, .lang-level {
     color: #94a3b8;
     font-size: 0.9rem;
+    white-space: nowrap;
+    margin-left: 1rem;
+}
+
+.cert-link {
+    align-self: flex-start;
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid rgba(184, 134, 255, 0.3);
+    border-radius: 4px;
+    background: rgba(184, 134, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.cert-link:hover {
+    background: var(--accent-color);
+    color: #0d0015;
+    text-decoration: none;
 }
 
 /* Footer */
@@ -474,19 +524,83 @@ section {
 }
 
 /* Mobile Responsive */
+/* Mobile Responsive */
 @media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    
     .glass-nav {
         padding: 1rem;
     }
-    
-    .nav-links {
-        display: none; 
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        z-index: 1001; /* Ensure it's above the glass-nav if needed, though glass-nav is 1000 */
+        transition: all 0.3s ease;
+    }
+
+    .hamburger i {
+        font-size: 1.8rem;
+        color: var(--text-color);
+        transition: all 0.3s ease;
     }
     
+    .hamburger i:hover {
+        color: var(--secondary-accent);
+        text-shadow: 0 0 10px var(--secondary-accent);
+    }
+
+    .nav-links {
+        position: fixed;
+        background: rgba(13, 0, 21, 0.95);
+        height: 100vh;
+        width: 100%;
+        top: 0;
+        left: 0; 
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        clip-path: circle(100px at 90% -10%);
+        -webkit-clip-path: circle(100px at 90% -10%);
+        transition: all 0.5s ease-out;
+        pointer-events: none;
+        z-index: 100;
+        padding: 0;
+    }
+
+    .nav-links.nav-active {
+        clip-path: circle(120% at 50% 50%);
+        -webkit-clip-path: circle(120% at 50% 50%);
+        pointer-events: all;
+    }
+
+    .nav-links li {
+        opacity: 0;
+    }
+
+    .nav-links li a {
+        font-size: 1.5rem;
+    }
+
+    /* Animations */
+    @keyframes navLinkFade {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* Typography & Spacing */
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
     .projects-grid {
         grid-template-columns: 1fr;
     }
@@ -509,7 +623,16 @@ section {
         flex-direction: column;
         gap: 0.5rem;
     }
+    
+    main {
+        padding: 0 1rem;
+    }
+    
+    .glass-nav nav {
+        justify-content: space-between;
+    }
 }
+
 
 /* Loading Skeleton */
 .skeleton-card {
