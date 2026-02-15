@@ -2,7 +2,7 @@
 
 // Put your personal information here, replacing mine
 #let name = "Albaraa I. Alsmail"
-#let location = "Damascus, SY"
+#let location = "Deir Ezzor, SY"
 #let email = "albaraa.as.2002@gmail.com"
 #let github = "github.com/Chikobara"
 #let githubio = "chikobara.github.io"
@@ -74,9 +74,9 @@ Highly motivated Artificial Intelligence Engineer (Graduation: Sept 2025) with a
 - *Certification of Appreciation* - In application of the outstanding participation and efforts in the 2025 Exhibition of FMEE, Awarded by *Prof. Mohallab Aldawood* Dean of Faculty of the Mechanical and Electrical Engineering.
 
 #project(
-  name: "Memoir (open-memoir.vercel.app), ",
+  name: "Memoir",
   // Role is optional
-  role: "Memoir, a Full-Stack/AI DEV",
+  role: "Memoir, Full-Stack/AI DEV",
   // Dates is optional
   dates: dates-helper(start-date: "Jul 2024", end-date: "Sep 2024"),
   // URL is also optional
@@ -125,6 +125,12 @@ Highly motivated Artificial Intelligence Engineer (Graduation: Sept 2025) with a
   activity: "IBM AI Engineering Professional Certificate",
   dates: dates-helper(start-date: "Sep 2024", end-date: "Present"),
 )
+
+== Languages
+Arabic: Native
+
+English: Advanced (Duolingo English Test) verify at: https://certs.duolingo.com/2ljdx1lswa4g8p5k
+
 
 // #extracurriculars(
 //   activity: "Science Olympiad Volunteering",
