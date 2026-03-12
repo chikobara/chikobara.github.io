@@ -12,9 +12,10 @@ const canvas = document.querySelector('#bg-canvas');
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+const isMobileDevice = window.innerWidth < 768;
 
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Cap pixel ratio for performance
+renderer.setPixelRatio(isMobileDevice ? 1 : Math.min(window.devicePixelRatio, 2)); // Hard cap pixel ratio to 1 on mobile
 
 // Helper function to create a circular star texture
 function getStarTexture() {
@@ -40,8 +41,7 @@ function getStarTexture() {
 
 // Particles (Stars)
 const particlesGeometry = new THREE.BufferGeometry();
-const isMobile = window.innerWidth < 768;
-const particlesCount = isMobile ? 600 : 1500; // Reduce particles on mobile for performance
+const particlesCount = isMobileDevice ? 400 : 1500; // Further reduce particles on mobile for performance
 const posArray = new Float32Array(particlesCount * 3);
 
 for(let i = 0; i < particlesCount * 3; i++) {
@@ -70,10 +70,18 @@ camera.position.z = 3;
 let mouseX = 0;
 let mouseY = 0;
 
-document.addEventListener('mousemove', (event) => {
-    mouseX = event.clientX;
-    mouseY = event.clientY;
-});
+if (!isMobileDevice) {
+    document.addEventListener('mousemove', (event) => {
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+    });
+
+    // Initialize Hero Card Tilt manually (auto-init disabled in HTML for mobile control)
+    const heroCard = document.querySelector('.hero-card');
+    if (typeof VanillaTilt !== 'undefined' && heroCard) {
+        VanillaTilt.init(heroCard);
+    }
+}
 
 // Animate
 const clock = new THREE.Clock();
@@ -97,10 +105,11 @@ animate();
 
 // Resizing
 window.addEventListener('resize', () => {
+    const isMobileCheck = window.innerWidth < 768;
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(isMobileCheck ? 1 : Math.min(window.devicePixelRatio, 2));
 });
 
 // Scroll Reveal Animation
@@ -191,13 +200,15 @@ async function fetchGitHubData() {
                 card.classList.add('glass-card', 'project-card');
                 // Initial opacity 0 handled by CSS
                 
-                // Tilt attributes
-                card.setAttribute('data-tilt', '');
-                card.setAttribute('data-tilt-max', '10');
-                card.setAttribute('data-tilt-speed', '400');
-                card.setAttribute('data-tilt-glare', '');
-                card.setAttribute('data-tilt-max-glare', '0.3');
-                card.setAttribute('data-tilt-gyroscope', 'false'); // Disable gyroscope for performance
+                // Tilt attributes (Only apply when on desktop context)
+                if (!isMobileDevice) {
+                    card.setAttribute('data-tilt', '');
+                    card.setAttribute('data-tilt-max', '10');
+                    card.setAttribute('data-tilt-speed', '400');
+                    card.setAttribute('data-tilt-glare', '');
+                    card.setAttribute('data-tilt-max-glare', '0.3');
+                    card.setAttribute('data-tilt-gyroscope', 'false'); // Disable gyroscope for performance
+                }
 
                 const language = repo.language || 'Code';
 
@@ -218,8 +229,8 @@ async function fetchGitHubData() {
                 
                 projectsGrid.appendChild(card);
                 
-                // Re-initialize tilt
-                if (typeof VanillaTilt !== 'undefined') {
+                // Re-initialize tilt only on desktop
+                if (typeof VanillaTilt !== 'undefined' && !isMobileDevice) {
                     VanillaTilt.init(card);
                 }
 

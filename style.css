@@ -35,6 +35,7 @@ body {
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s ease-out;
+    will-change: opacity, transform;
 }
 
 .show {
@@ -176,6 +177,7 @@ section {
     box-shadow: var(--glass-shadow);
     padding: 2rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    will-change: transform, box-shadow;
 }
 
 /* Hero Section */
@@ -252,16 +254,16 @@ section {
     gap: 2rem;
 }
 
-.project-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
 .project-card:hover {
     background: var(--card-hover-bg);
     border-color: var(--accent-color);
     box-shadow: 0 0 20px rgba(184, 134, 255, 0.3);
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .card-header-flex {
@@ -548,9 +550,17 @@ section {
         text-shadow: 0 0 10px var(--secondary-accent);
     }
 
+    /* Remove expensive filters for mobile */
+    .glass-card, .glass-nav, .glass-footer {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(13, 0, 21, 0.85); /* Slightly darker/more opaque to compensate for lack of blur */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Simpler shadow */
+    }
+
     .nav-links {
         position: fixed;
-        background: rgba(13, 0, 21, 0.95);
+        background: rgba(13, 0, 21, 0.98);
         height: 100vh;
         width: 100%;
         top: 0;
