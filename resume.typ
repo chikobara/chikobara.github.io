@@ -87,6 +87,42 @@ Highly motivated Artificial Intelligence Engineer (Graduation: Sept 2025) with a
 - Designed and optimized a scalable NoSQL backend (Convex) to ensure high performance and reliability for real-time collaboration.
 - Managed PR reviews, resolved bugs, and drove continuous open-source collaboration based on user feedback.
 
+#project(
+  name: "Arch Linux Hyprland Dotfiles",
+  role: "System Customizer & Developer",
+  dates: dates-helper(start-date: "Jul 2024", end-date: "Present"),
+  url: "github.com/Chikobara/dotfiles",
+)
+- Engineered a highly customized and aesthetic Arch Linux environment utilizing the Hyprland Wayland compositor.
+- Authored extensive configuration scripts in TypeScript and Bash, gaining massive community recognition with over 180 GitHub stars and multiple forks.
+
+#project(
+  name: "GPU-Switcher-Supergfxctl",
+  role: "Creator & Open Source Developer",
+  dates: dates-helper(start-date: "May 2024", end-date: "Present"),
+  url: "github.com/Chikobara/GPU-Switcher-Supergfxctl",
+)
+- Developed a GNOME Shell Extension in JavaScript to manage and seamlessly switch GPU profiles for ASUS laptops via Supergfxctl.
+- Actively maintained the open-source repository, resolving community issues and achieving significant adoption with over 30 GitHub stars.
+
+#project(
+  name: "Mojaz AI",
+  role: "Full-Stack AI Developer",
+  dates: dates-helper(start-date: "Mar 2026", end-date: "Present"),
+  url: "github.com/Chikobara/Mojaz-AI",
+)
+- Built an AI-driven newsletter generation platform featuring comprehensive multilingual (Arabic/English) support and Text-to-Speech integration.
+- Designed dynamic user-centric features, including persistent history management and customizable TTS voice moods with an interactive audio player.
+
+#project(
+  name: "Devices Price Classification System",
+  role: "Machine Learning Engineer",
+  dates: dates-helper(start-date: "Oct 2024", end-date: "Oct 2024"),
+  url: "github.com/Chikobara/Devices-Price-Classification-System",
+)
+- Created an end-to-end machine learning pipeline using Python to predict and classify device prices based on hardware specifications.
+- Conducted exploratory data analysis, feature engineering, and trained robust classification models, showcasing practical data science proficiency.
+
 == Professional Development & Extracurricular
 
 #project(
