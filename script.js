@@ -14,7 +14,7 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
 
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Cap pixel ratio for performance
 
 // Helper function to create a circular star texture
 function getStarTexture() {
@@ -40,7 +40,8 @@ function getStarTexture() {
 
 // Particles (Stars)
 const particlesGeometry = new THREE.BufferGeometry();
-const particlesCount = 1500; // More particles for a galaxy feel
+const isMobile = window.innerWidth < 768;
+const particlesCount = isMobile ? 600 : 1500; // Reduce particles on mobile for performance
 const posArray = new Float32Array(particlesCount * 3);
 
 for(let i = 0; i < particlesCount * 3; i++) {
@@ -99,6 +100,7 @@ window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
 
 // Scroll Reveal Animation
@@ -110,8 +112,8 @@ const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('show');
-            // Optional: stop observing once shown if you don't want it to hide again
-            // observer.unobserve(entry.target);
+            // Unobserve to improve scroll performance
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
@@ -144,8 +146,8 @@ async function fetchGitHubData() {
         const response = await fetch(`https://api.github.com/users/${username}/repos?sort=stargazers_count&direction=desc&per_page=100`);
         const repos = await response.json();
 
-        // Priority Projects (Lumos, Memoir)
-        const priorityNames = ['lumos', 'memoir'];
+        // Priority Projects (Lumos, Memoir-App)
+        const priorityNames = ['lumos', 'memoir-app'];
         const priorityRepos = [];
         const otherRepos = [];
 
@@ -195,6 +197,7 @@ async function fetchGitHubData() {
                 card.setAttribute('data-tilt-speed', '400');
                 card.setAttribute('data-tilt-glare', '');
                 card.setAttribute('data-tilt-max-glare', '0.3');
+                card.setAttribute('data-tilt-gyroscope', 'false'); // Disable gyroscope for performance
 
                 const language = repo.language || 'Code';
 
